@@ -8,6 +8,7 @@ void main() => runApp(new MyApp());
 
 //学习的位置
 //https://flutterchina.club/get-started/codelab/#%E7%AC%AC1%E6%AD%A5-%E5%88%9B%E5%BB%BA-flutter-app
+//第6步: 导航到新页面
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
