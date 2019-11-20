@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:english_words/english_words.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
@@ -25,6 +27,7 @@ class RandomWords extends StatefulWidget {
 
 class RandomWordsState extends State<RandomWords> {
   final suggestions = <WordPair>[];
+  final saved = new Set<WordPair>();
   final biggerFount = const TextStyle(fontSize: 18.0);
 
   @override
@@ -32,6 +35,9 @@ class RandomWordsState extends State<RandomWords> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('Startup Name Generator'),
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.list), onPressed: pushSaved)
+        ],
       ),
       body: buildSuggestions(),
     );
@@ -57,11 +63,32 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   Widget buildRow(WordPair pair) {
+    final alreadySaved = saved.contains(pair);
+
     return new ListTile(
       title: new Text(
         pair.asPascalCase,
         style: biggerFount,
       ),
+      trailing: new Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? Colors.red : Colors.grey,
+      ),
+      onTap: () {
+        setState(() {
+          if (alreadySaved) {
+            saved.remove(pair);
+          } else {
+            saved.add(pair);
+          }
+        });
+      },
+    );
+  }
+
+  void pushSaved() {
+    Navigator.of(context).push(
+      new MaterialPageRoute(builder: null),
     );
   }
 }
