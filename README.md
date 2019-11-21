@@ -1,4 +1,4 @@
-# flutter_demo
+# flutter_training
 
 A new Flutter project.
 

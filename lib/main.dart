@@ -1,19 +1,15 @@
-import 'dart:math';
-
-import 'package:english_words/english_words.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(MyApp());
 
 //学习的位置
 //https://flutterchina.club/get-started/codelab/#%E7%AC%AC1%E6%AD%A5-%E5%88%9B%E5%BB%BA-flutter-app
 //第6步: 导航到新页面
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final wordPair = new WordPair.random();
-
     return new MaterialApp(
       title: 'First App',
       home: new RandomWords(),
@@ -25,6 +21,7 @@ class RandomWords extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new RandomWordsState();
 }
+
 
 class RandomWordsState extends State<RandomWords> {
   final suggestions = <WordPair>[];
