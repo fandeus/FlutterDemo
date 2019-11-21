@@ -22,7 +22,6 @@ class RandomWords extends StatefulWidget {
   State<StatefulWidget> createState() => new RandomWordsState();
 }
 
-
 class RandomWordsState extends State<RandomWords> {
   final suggestions = <WordPair>[];
   final saved = new Set<WordPair>();
@@ -86,7 +85,33 @@ class RandomWordsState extends State<RandomWords> {
 
   void pushSaved() {
     Navigator.of(context).push(
-      new MaterialPageRoute(builder: null),
+      new MaterialPageRoute(
+        builder: (context) {
+          final titles = saved.map(
+            (pair) {
+              return new ListTile(
+                title: new Text(
+                  pair.asPascalCase,
+                  style: biggerFount,
+                ),
+              );
+            },
+          );
+          final divided = ListTile.divideTiles(
+            context: context,
+            tiles: titles,
+          ).toList();
+
+          return new Scaffold(
+            appBar: new AppBar(
+              title: new Text('Saved Suggestions'),
+            ),
+            body: new ListView(
+              children: divided,
+            ),
+          );
+        },
+      ),
     );
   }
 }
